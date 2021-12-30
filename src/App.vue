@@ -31,8 +31,8 @@ export default {
     const todos = ref([
       { id: 1, subject: "휴대폰 사기" },
       { id: 2, subject: "장보기" },
+      { id: 3, subject: "vue 강의 듣기" },
     ]);
-    // ref를 사용한 todos 데이터는 reactive 하기 때문에 todos 데이터가 변경되면 화면 템플릿의 데이터도 변경된다
 
     const onSubmit = () => {
       console.log(todo.value);
