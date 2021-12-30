@@ -2,18 +2,20 @@
   <div class="container">
     <h2>To-Do List</h2>
     <form @submit.prevent="onSubmit" class="d-flex">
-      <div class="flex-grow-1 mr-2">
-        <input
-          class="form-control"
-          type="text"
-          v-model="todo"
-          placeholder="Type new to-do"
-        />
+      <div class="d-flex">
+        <div class="flex-grow-1 mr-2">
+          <input
+            class="form-control"
+            type="text"
+            v-model="todo"
+            placeholder="Type new to-do"
+          />
+        </div>
+        <div>
+          <button class="btn btn-primary" type="submit">Add</button>
+        </div>
       </div>
-
-      <div>
-        <button class="btn btn-primary" type="submit">Add</button>
-      </div>
+      <div v-show="hasError" style="color: red">This field cannot be empty</div>
     </form>
     <!-- {{ todos }} -->
     <div v-for="todo in todos" :key="todo.id" class="card mt-2">
@@ -39,10 +41,13 @@ export default {
       todos.value.push({ id: Date.now(), subject: todo.value });
     };
 
+    const hasError = ref(false);
+
     return {
       todo,
       todos,
       onSubmit,
+      hasError,
     };
   },
 };
