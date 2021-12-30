@@ -1,31 +1,42 @@
 <template>
-  <div class="name">{{ name }}</div>
-  <button class="btn btn-primary" v-on:click="updateName">Click</button>
+  <div class="container">
+    <h2>To-Do List</h2>
+    <form @submit.prevent="onSubmit" class="d-flex">
+      <div class="flex-grow-1 mr-2">
+        <input
+          class="form-control"
+          type="text"
+          v-model="todo"
+          placeholder="Type new to-do"
+        />
+      </div>
+
+      <div>
+        <button class="btn btn-primary" type="submit">Add</button>
+      </div>
+    </form>
+    {{ todos }}
+  </div>
 </template>
 
 <script>
-// import {ref} from "vue" // 화면 동시에 업데이트. 문자열 일때
-import { reactive } from "vue"; // 배열이나 객체일 때 주로 사용
+import { ref } from "vue";
 
 export default {
   setup() {
-    const name = reactive({ id: 1 });
+    const todo = ref("");
+    const todos = ref([]);
 
-    // const greeting = (name) => {
-    //   return `Hello, ${name}`;
-    // };
-
-    // const greet = greeting(name);
-
-    const updateName = () => {
-      // name.value = Jeyoon
-      name.id = 2;
-      console.log(name);
+    const onSubmit = () => {
+      // e.preventDefault(); // 새로고침 방지
+      console.log(todo.value);
+      todos.value.push({ id: Date.now(), subject: todo.value });
     };
 
     return {
-      name,
-      updateName,
+      todo,
+      todos,
+      onSubmit,
     };
   },
 };
