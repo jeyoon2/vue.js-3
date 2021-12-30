@@ -15,11 +15,9 @@
         <button class="btn btn-primary" type="submit">Add</button>
       </div>
     </form>
-    <div class="card mt-2">
-      <div class="card-body p-2">{{ todos[0].subject }}</div>
-    </div>
-    <div class="card mt-2">
-      <div class="card-body p-2">{{ todos[1].subject }}</div>
+    <!-- {{ todos }} -->
+    <div v-for="todo in todos" :key="todo.id" class="card mt-2">
+      <div class="card-body p-2">{{ todo.subject }}</div>
     </div>
   </div>
 </template>
@@ -34,9 +32,9 @@ export default {
       { id: 1, subject: "휴대폰 사기" },
       { id: 2, subject: "장보기" },
     ]);
+    // ref를 사용한 todos 데이터는 reactive 하기 때문에 todos 데이터가 변경되면 화면 템플릿의 데이터도 변경된다
 
     const onSubmit = () => {
-      // e.preventDefault(); // 새로고침 방지
       console.log(todo.value);
       todos.value.push({ id: Date.now(), subject: todo.value });
     };
