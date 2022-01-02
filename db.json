@@ -2,7 +2,7 @@
   "todos": [
     {
       "subject": "vue js 강의",
-      "completed": false,
+      "completed": true,
       "id": 1
     },
     {
