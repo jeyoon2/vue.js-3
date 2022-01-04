@@ -87,7 +87,7 @@
     },
     {
       "subject": "admin",
-      "completed": false,
+      "completed": true,
       "id": 23
     },
     {
