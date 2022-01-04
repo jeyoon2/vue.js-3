@@ -34,12 +34,22 @@
     </button>
     <Toast v-if="showToast" :message="toastMessage" :type="toastAlertType" />
   </form>
+  <div id="Jeyoon"></div>
 </template>
 
 <script>
 import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
-import { ref, computed } from "vue";
+import {
+  ref,
+  computed,
+  onBeforeMount,
+  onMounted,
+  onBeforeUpdate,
+  onUpdated,
+  onBeforeUnmount,
+  onUnmounted,
+} from "vue";
 import _ from "lodash";
 import Toast from "@/components/Toast.vue";
 
@@ -48,6 +58,40 @@ export default {
     Toast,
   },
   setup() {
+    onBeforeMount(() => {
+      // 아직 돔에 올라가지 않은 상태. 마운트 되기 전 실행
+      // setup 내의 모든 코드를 훑고 난 후 실행됨
+      console.log(document.querySelector("#Jeyoon"));
+    });
+
+    onMounted(() => {
+      // 마운트 되고 난 후 실행
+      console.log(document.querySelector("#Jeyoon"));
+    });
+
+    onBeforeUpdate(() => {
+      // 업데이트가 되기 전 실행되는 로직
+      console.log("before update");
+    });
+
+    onUpdated(() => {
+      // state가 업데이트될 때마다 실행되는 로직
+      console.log("updated");
+    });
+
+    onBeforeUnmount(() => {
+      // 언마운트 되기 전 실행
+      console.log("before unmount");
+    });
+
+    onUnmounted(() => {
+      // 언마운트 (다른 페이지로 이동) 시 실행.
+      // 주로 페이지 이동 전 메모리 정리를 위해 사용
+      console.log("unmouted");
+    });
+
+    console.log("hello");
+
     const route = useRoute();
     const router = useRouter();
     const todo = ref(null);
